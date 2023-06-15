@@ -21,15 +21,15 @@ HAVING MAX(PRICE);
 
  -- Write a query to select all meals that have a price lower than the average price, using HAVING and AVG
 
-SELECT NAME, MIN(PRICE) AS LOWEST_PRICE
+SELECT NAME, PRICE AS LOWEST_PRICE
 FROM MEAL
 GROUP BY NAME
-HAVING MIN(PRICE) < AVG(PRICE);
+HAVING PRICE < (SELECT AVG(PRICE) FROM MEAL);
 
  -- Write a query to select all meals that have a price lower than the average price and have more than 600 calories
 
-SELECT NAME, MIN(PRICE) AS NOT_VERY_HEALTHY
+SELECT NAME, PRICE AS NOT_VERY_HEALTHY
 FROM MEAL
 GROUP BY NAME
-HAVING PRICE < AVG(PRICE) AND CALORIES > 600; #NON FUNZIONANTE
+HAVING PRICE < (SELECT AVG(PRICE) FROM MEAL) AND CALORIES > 600;
 
